@@ -6,21 +6,17 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from core import models
 from core.models import Autor, Categoria, Editora, Livro, User
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-
-    (_("Personal Info"), {"fields": ("name","foto")}), #Para incluir foto
-    
     """Define the admin pages for users."""
 
     ordering = ['id']
     list_display = ['email', 'name']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('name', 'passage_id')}),
+        (_('Personal Info'), {'fields': ('name', 'foto', 'passage_id')}),  # Inclua 'foto' aqui
         (
             _('Permissions'),
             {
@@ -42,11 +38,11 @@ class UserAdmin(BaseUserAdmin):
             {
                 'classes': ('wide',),
                 'fields': (
-                    @admin.register(User)
-class UserAdmin(BaseUserAdmin):'email',
+                    'email',
                     'password1',
                     'password2',
                     'name',
+                    'foto',  # Inclua 'foto' aqui também, se necessário
                     'is_active',
                     'is_staff',
                     'is_superuser',
@@ -54,6 +50,7 @@ class UserAdmin(BaseUserAdmin):'email',
             },
         ),
     )
+
 
 @admin.register(Autor)
 class AutorAdmin(admin.ModelAdmin):
