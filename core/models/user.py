@@ -50,12 +50,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         default=None,
     )
-    passage_id = models.CharField(
-        max_length=255,
-        unique=True,
-        verbose_name=_("passage_id"),
-        help_text=_("Passage ID"),
-    )
+    # passage_id = models.CharField(max_length=255,unique=True,verbose_name=_("passage_id"),help_text=_("Passage ID"),)
     email = models.EmailField(
         max_length=255, unique=True, verbose_name=_("email"), help_text=_("Email")
     )
